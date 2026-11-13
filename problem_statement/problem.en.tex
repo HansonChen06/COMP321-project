@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+
+% These definitions make the source compile outside the contest template.
+\providecommand{\problemname}[1]{\section*{#1}}
+
+\begin{document}
+
+\problemname{The Unreliable Guide}
+
+You want to travel through a park from clearing $1$ to clearing $n$. The park
+contains $n$ clearings joined by $m$ undirected trails. Every trail has a
+positive length, and the trail network is connected. Parallel trails and
+trails that begin and end at the same clearing are allowed.
+
+A guide gives you one claimed shortest distance from each clearing to clearing
+$n$. Unfortunately, exactly $\lceil n/100\rceil$ of these claims are wrong.
+Determine the true shortest distance from clearing $1$ to clearing $n$, then
+identify every incorrect claim and give its correct distance.
+
+\begin{figure}[h]
+  \centering
+  \setlength{\unitlength}{8mm}
+  \begin{picture}(8,3)
+    \put(0.5,1.5){\circle*{0.18}} \put(0.2,1.8){$1$}
+    \put(3.0,2.5){\circle*{0.18}} \put(2.8,2.8){$2$}
+    \put(3.0,0.5){\circle*{0.18}} \put(2.8,0.0){$3$}
+    \put(5.5,0.5){\circle*{0.18}} \put(5.3,0.0){$4$}
+    \put(7.5,1.5){\circle*{0.18}} \put(7.7,1.8){$5$}
+    \put(0.5,1.5){\line(5,2){2.5}} \put(1.6,2.2){$8$}
+    \put(0.5,1.5){\line(5,-2){2.5}} \put(1.6,0.5){$2$}
+    \put(3.0,2.5){\line(3,-2){3.0}} \put(4.3,1.8){$2$}
+    \put(3.0,0.5){\line(1,0){2.5}} \put(4.1,0.7){$1$}
+    \put(5.5,0.5){\line(2,1){2.0}} \put(6.5,0.8){$1$}
+    \put(3.0,2.5){\line(3,-1){4.5}} \put(5.3,2.0){$2$}
+  \end{picture}
+  \caption{The trail network from Sample 2.}
+\end{figure}
+
+\section*{Input}
+
+The first line contains two integers $n$ and $m$
+($2 \le n \le 200\,000$, $n-1 \le m \le 200\,000$), the numbers of
+clearings and trails.
+
+The following $n$ lines contain one integer each. The $i$th integer, $g_i$
+($1 \le g_i \le 10^7$), is the guide's claimed shortest distance from
+clearing $i$ to clearing $n$. Exactly $\lceil n/100\rceil$ claims are
+incorrect.
+
+The following $m$ lines each contain three integers $a$, $b$, and $w$
+($1 \le a,b \le n$, $1 \le w \le 10^7$), describing an undirected trail of
+length $w$ between clearings $a$ and $b$. The graph is connected. Parallel
+trails and self-loops are permitted.
+
+\section*{Output}
+
+First, output the shortest distance from clearing $1$ to clearing $n$.
+Then, for every incorrect guide claim, output one line containing the clearing
+number and its true shortest distance. Output these lines in increasing order
+of clearing number.
+
+All true distances fit in a signed $64$-bit integer.
+
+\section*{Sample Input 1}
+\begin{verbatim}
+2 1
+7
+4
+1 2 7
+\end{verbatim}
+
+\section*{Sample Output 1}
+\begin{verbatim}
+7
+2 0
+\end{verbatim}
+
+\section*{Sample Input 2}
+\begin{verbatim}
+5 6
+4
+2
+2
+1
+1
+1 2 8
+2 5 2
+1 3 2
+3 4 1
+4 5 1
+2 4 2
+\end{verbatim}
+
+\section*{Sample Output 2}
+\begin{verbatim}
+4
+5 0
+\end{verbatim}
+
+\end{document}
