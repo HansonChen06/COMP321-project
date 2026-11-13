@@ -1,0 +1,29 @@
+The Unreliable Guide - Test Case Descriptions
+Every .in has a matching .ans. Exactly ceil(n/100) guesses are incorrect.
+All paths are undirected; all graphs are connected.
+Self-loops and parallel edges are allowed.
+
+sample01: Smallest n=2, one path; terminal guess wrong.
+sample02: Competing routes, one incorrect terminal guess.
+sample03: Six-node example used in the problem figure.
+secret01: n=2, minimum edge weight.
+secret02: n=2, maximum edge weight.
+secret03: n=3, maximum valid real distance at vertex 1.
+secret04: Parallel edges where the shorter one wins.
+secret05: Cycles, self-loops, and repeated edges.
+secret06: n=99 rounding boundary, star with high weights.
+secret07: n=100 rounding boundary, weighted chain.
+secret08: n=101; overestimating heuristic breaks naive A*.
+secret09: n=199, high-weight star, two wrong guesses.
+secret10: n=200, dense random graph with duplicate edges.
+secret11: n=201, three wrong guesses (rounding threshold).
+secret12: 500-node sparse chain.
+secret13: 1000-node star plus shortcuts.
+secret14: 3000-node random connected graph.
+secret15: 5000-node comb with self-loops/duplicates.
+secret16: 10000-node random graph.
+secret17: 20000-node star with maximum weight possibilities.
+secret18: 50000 nodes, 100000 edges; performance stress.
+secret19: n=m=200000, maximum-size random graph.
+secret20: n=200000,m=199999, shortest distance 19990000000;
+          tests 64-bit distances and exactly 2000 wrong guesses.
