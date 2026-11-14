@@ -14,6 +14,7 @@ for i in range(1, n + 1):
 graph = [[] for _ in range(n + 1)]
 
 for _ in range(m):
+
     a, b, w = map(int, input().split())
     graph[a].append((b, w))
     graph[b].append((a, w))
@@ -25,11 +26,14 @@ dist[n] = 0
 visited = [False] * (n + 1)
 
 for _ in range(n):
+
     c_node = -1
 
     # find the unvisited node with the smallest distance
     for i in range(1, n + 1):
+
         if not visited[i]:
+
             if c_node == -1 or dist[i] < dist[c_node]:
                 c_node = i
 
@@ -40,6 +44,7 @@ for _ in range(n):
 
     # update distances to neighbors
     for next_node, w in graph[c_node]:
+
         new_dist = dist[c_node] + w
 
         if new_dist < dist[next_node]:
