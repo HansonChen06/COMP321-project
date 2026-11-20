@@ -7,7 +7,8 @@ The generator functions are:
 - `tree()`: construct a connected chain, star, comb or random tree.
 - `add_edges()`: add weighted edges, optional parallel edges and self-loops.
 - `dijkstra()`: shortest distances from destination n, using `long long`.
-- `guesses()`: make exactly `ceil(n/100)` guesses wrong, including n.
+- `guesses()`: make exactly `ceil(n/100)` guesses wrong, with optional forced
+  vertices for targeted cases.
 - `write_case()`: internal constraints check and paired `.in/.ans` writing.
 - `astar_trap()` / `overflow_trap()`: targeted incorrect-solution detection.
 - `descriptions()`: explain all 23 test cases in `Description.txt`.
@@ -18,10 +19,10 @@ The generator intentionally includes parallel edges and self-loops; the final pr
 
 ## Compile and run (Linux/macOS)
 
-In this directory:
+From the repository root:
 
 ```bash
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic generate.cpp -o generate
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic test_case_generator/generate.cpp -o generate
 ./generate .
 ```
 

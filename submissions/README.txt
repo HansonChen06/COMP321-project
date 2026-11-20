@@ -5,11 +5,11 @@ Submissions are categorized as follows:
 - run_time_error/: submissions expected to terminate abnormally.
 - time_limit_exceeded/: submissions expected to exceed the time limit.
 
-The accepted submitions all work by running Dijkstra's algorithm starting from clearing n.
-Once the algorithm return a list with all of the shortest distances from clearing n,
-the programms output the shortest distance (as it is from clearing n to clearing 1),
+The accepted submissions all work by running Dijkstra's algorithm starting from clearing n.
+Once the algorithm returns a list with all of the shortest distances from clearing n,
+the programs output the shortest distance (as it is from clearing n to clearing 1),
 then go through all of the guide's guesses and check which ones are wrong. If they
-find one that is wrong, it is outputed as according to the problem statement.
+find one that is wrong, it is output according to the problem statement.
 
 The intentionally incorrect submissions target these common mistakes:
 
