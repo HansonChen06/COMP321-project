@@ -81,7 +81,7 @@ Edges add_edges(int n, Edges edges, int target, uint32_t seed,
     return edges;
 }
 
-// Generate exactly q=ceil(n/100) incorrect guide guesses, all in [1,10^7].
+// Generate exactly q=ceil(n/100) incorrect guide guesses, all in [0,10^7].
 // Any true distance >10^7 is necessarily a wrong guess; node n is always wrong.
 vector<ll> guesses(int n, const Dist& d, uint32_t seed, vector<int> forced = {}) {
     const int q = (n + 99) / 100;
@@ -122,7 +122,7 @@ void write_case(fs::path folder, const string& name, int n, const Edges& edges,
     ensure((int)g.size() == n + 1, name + ": invalid guess array size");
     vector<pair<int,ll>> wrong;
     for (int i = 1; i <= n; ++i) {
-        ensure(1 <= g[i] && g[i] <= MAX_G, name + ": invalid guess value");
+        ensure(0 <= g[i] && g[i] <= MAX_G, name + ": invalid guess value");
         if (g[i] != d[i]) wrong.push_back({i, d[i]});
     }
     ensure((int)wrong.size() == (n + 99) / 100, name + ": wrong number of mistakes");
@@ -167,7 +167,7 @@ Self-loops and parallel edges are allowed.
 sample01: Smallest n=2, one path; terminal guess wrong.
 sample02: Competing routes, one incorrect terminal guess.
 sample03: Six-node example used in the problem figure.
-secret01: n=2, minimum edge weight.
+secret01: n=2, minimum edge weight and minimum guide guess g_i=0.
 secret02: n=2, maximum edge weight.
 secret03: n=3, maximum valid real distance at vertex 1.
 secret04: Parallel edges where the shorter one wins.
@@ -200,7 +200,7 @@ void generate(fs::path root) {
                7,{},4,{0,4,2,2,1,1});
     write_case(sample,"sample03",6,{{1,2,1},{2,6,1},{1,3,2},{3,6,2},
                {2,4,3},{4,5,1},{5,6,3}},7,{},2,{0,2,1,2,4,3,7});
-    write_case(secret,"secret01",2,{{1,2,1}},11);
+    write_case(secret,"secret01",2,{{1,2,1}},11,{},1,{0,0,0});
     write_case(secret,"secret02",2,{{1,2,MAX_G}},12);
     write_case(secret,"secret03",3,{{1,2,4000000},{2,3,6000000}},13);
     write_case(secret,"secret04",4,{{1,2,10},{1,2,1},{2,4,2},{1,3,2},{3,4,2}},14);

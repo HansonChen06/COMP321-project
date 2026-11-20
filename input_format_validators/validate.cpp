@@ -20,16 +20,33 @@ using ll = long long;
     exit(1);
 }
 
-static vector<ll> read_integers(int count, const string& where) {
+static vector<ll> read_integers(int count, const string& where, bool allow_zero = false) {
     string line;
     if (!getline(cin, line)) invalid("missing line: " + where);
-    if (!line.empty() && line.back() == '\r') line.pop_back();
+    if (line.empty()) invalid("empty line: " + where);
+    if (line.front() == ' ' || line.back() == ' ')
+        invalid("leading or trailing space on " + where);
+    bool previous_space = false;
+    for (char ch : line) {
+        if (ch == ' ') {
+            if (previous_space) invalid("multiple spaces on " + where);
+            previous_space = true;
+        } else {
+            if (ch < '0' || ch > '9') invalid("non-digit character on " + where);
+            previous_space = false;
+        }
+    }
     istringstream input(line);
     vector<ll> numbers;
     numbers.reserve(count);
     for (int i = 0; i < count; ++i) {
+        string token;
+        if (!(input >> token)) invalid("expected " + to_string(count) + " integers on " + where);
+        if (token.size() > 1 && token.front() == '0') invalid("leading zero on " + where);
+        if (!allow_zero && token == "0") invalid("zero is not allowed on " + where);
         ll val;
-        if (!(input >> val)) invalid("expected " + to_string(count) + " integers on " + where);
+        istringstream token_input(token);
+        if (!(token_input >> val) || !token_input.eof()) invalid("invalid integer on " + where);
         numbers.push_back(val);
     }
     string trailing;
@@ -50,9 +67,9 @@ int main() {
 
     vector<ll> guesses(n + 1);
     for (int i = 1; i <= n; ++i) {
-        auto vals = read_integers(1, "guess " + to_string(i));
+        auto vals = read_integers(1, "guess " + to_string(i), true);
         ll g = vals[0];
-        if (g < 1 || g > 10000000LL) invalid("guide guess outside [1, 10^7]");
+        if (g < 0 || g > 10000000LL) invalid("guide guess outside [0, 10^7]");
         guesses[i] = g;
     }
 

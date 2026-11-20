@@ -28,7 +28,7 @@ For independent checks:
 
 ```bash
 g++ -std=c++17 -O2 input_format_validators/validate.cpp -o validate
-g++ -std=c++17 -O2 submissions/accepted/dijkstra_reverse.cpp -o accepted
+g++ -std=c++17 -O2 submissions/accepted/Accepted.cpp -o accepted
 ./validate < data/sample/sample01.in
 echo $?        # expected 42
 ./accepted < data/sample/sample01.in
@@ -47,6 +47,6 @@ The generator functions are:
 
 Randomized cases use `std::mt19937` with fixed seeds, making files reproducible with the same C++ standard library implementation.
 
-The generator intentionally includes parallel edges and self-loops; the final problem statement and input validator must permit them. `g_i` is always in `[1,10^7]` even if a true shortest distance is larger. The exact incorrect-guess count is enforced.
+The generator intentionally includes parallel edges and self-loops; the final problem statement and input validator must permit them. `g_i` is always in `[0,10^7]` even if a true shortest distance is larger. The exact incorrect-guess count is enforced.
 
 The accepted submissions include implementations in C++, Java, and Python.
