@@ -45,6 +45,7 @@ int main() {
 
         auto [du, u] = pq.top();
         pq.pop();
+        
         if (du != dist[u]) continue;  // Skip outdated entries
 
         for (auto [v, weight] : adj[u]) {

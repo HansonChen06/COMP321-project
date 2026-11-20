@@ -5,7 +5,6 @@
 \usepackage{parskip}
 \usepackage{wrapfig}
 
-% Define \problemname and \illustration if not using Kattis template
 \newcommand{\problemname}[1]{\section*{#1}}
 \newcommand{\illustration}[3]{%
     \begin{wrapfigure}{r}{#1\textwidth}
@@ -31,31 +30,39 @@ With this in mind, you and Tom need to calculate the smallest possible travel di
 
 \section*{Input}
 
-Input starts with a line containing two integers $n$ and $m$ ($2 \le n \le 200\,000$, $1 \le m \le 200\,000$), representing the number of clearings in the park and the number of paths connecting pairs of clearings, respectively.
+Input starts with a line containing two integers $n$ and $m$ ($2 \le n \le 2 \cdot 10^5$, $1 \le m \le 2 \cdot 10^5$), representing the number of clearings in the park and the number of paths connecting pairs of clearings, respectively.
 
-The next $n$ lines each contain a single integer $g_i$ ($0 \le g_i \le 10\,000\,000$), denoting the guide's stated shortest path length from clearing $i$ to clearing $n$, given in increasing order of $i$ from $1$ to $n$.
+The next $n$ lines each contain a single integer $g_i$ ($0 \le g_i \le 10^7$), denoting the guide's stated shortest path length from clearing $i$ to clearing $n$, given in increasing order of $i$ from $1$ to $n$.
 
-The following $m$ lines each contain three integers $a$, $b$, and $k$ ($1 \le a, b \le n$, $1 \le k \le 10\,000\,000$), representing a path between clearing $a$ and clearing $b$ of length $k$.
+The following $m$ lines each contain three integers $a$, $b$, and $k$ ($1 \le a, b \le n$, $1 \le k \le 10^7$), representing a path between clearing $a$ and clearing $b$ of length $k$.
 
 \section*{Output}
 
 Output a single integer on the first line denoting the smallest possible travel distance from clearing $1$ to clearing $n$. On each of the next $\lceil n / 100 \rceil$ lines, output two space-separated integers: the clearing number for which the guide gave an incorrect distance, and the true shortest distance from that clearing to clearing $n$. List these clearings in increasing order of their clearing numbers.
 
-\section*{Sample Input 1}
+\section*{Sample 1}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Sample Input 1}
 \begin{verbatim}
 2 1
 7
 4
 1 2 7
 \end{verbatim}
-
-\section*{Sample Output 1}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Sample Output 1}
 \begin{verbatim}
 7
 2 0
 \end{verbatim}
+\end{minipage}
 
-\section*{Sample Input 2}
+\section*{Sample 2}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Sample Input 2}
 \begin{verbatim}
 5 6
 4
@@ -70,11 +77,13 @@ Output a single integer on the first line denoting the smallest possible travel 
 4 5 1
 2 4 2
 \end{verbatim}
-
-\section*{Sample Output 2}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Sample Output 2}
 \begin{verbatim}
 4
 5 0
 \end{verbatim}
+\end{minipage}
 
 \end{document}

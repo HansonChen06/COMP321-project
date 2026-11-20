@@ -5,7 +5,7 @@ Self-loops and parallel edges are allowed.
 
 sample01: Smallest n=2, one path; terminal guess wrong.
 sample02: Competing routes, one incorrect terminal guess.
-sample03: Six-node example used in the problem figure.
+sample03: Six node example with an incorrect terminal guess.
 secret01: n=2, minimum edge weight; wrong guess at vertex 1 and correct g_n=0.
 secret02: n=2, maximum edge weight; wrong guess at vertex 1.
 secret03: n=3, maximum valid real distance at vertex 1; wrong guess at vertex 2.

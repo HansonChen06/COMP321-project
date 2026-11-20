@@ -55,5 +55,7 @@ print(dist[1])
 
 # find the incorrect guesses
 for i in range(1, n + 1):
+
     if guess[i] != dist[i]:
+        
         print(i, dist[i])

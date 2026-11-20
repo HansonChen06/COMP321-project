@@ -5,7 +5,13 @@ Submissions are categorized as follows:
 - run_time_error/: submissions expected to terminate abnormally.
 - time_limit_exceeded/: submissions expected to exceed the time limit.
 
-The intentionally incorrect C++ submissions target these common mistakes:
+The accepted submitions all work by running Dijkstra's algorithm starting from clearing n.
+Once the algorithm return a list with all of the shortest distances from clearing n,
+the programms output the shortest distance (as it is from clearing n to clearing 1),
+then go through all of the guide's guesses and check which ones are wrong. If they
+find one that is wrong, it is outputed as according to the problem statement.
+
+The intentionally incorrect submissions target these common mistakes:
 
 - wrong_answer/Wrong-Astar.cpp treats the guide's guesses as an admissible A*
   heuristic. Because some guesses are incorrect and may overestimate the
@@ -19,3 +25,12 @@ The intentionally incorrect C++ submissions target these common mistakes:
   may be much longer than INT_MAX. secret20 rejects this submission because
   the correct distance from clearing 1 to clearing n is 19,990,000,000, so
   shortest-path distances must use 64-bit integers.
+
+- wrong_answer/Wrong-Reverse.py runs Dijkstra's algorithm starting from clearing 1
+  instead of clearing n, which is where it should be starting it from. This means
+  it'll still get a correct solution for the shortest path, but the distance calculations
+  to correct the guide will be wrong as they need to be from clearing n and not clearing
+  1.
+
+- time_limit_exceeded/Wrong-TLE.py is too slow as it scans all nodes for the shortest distance
+  instead of using a priority queue. Otherwise it is identical to running the accepted submission.

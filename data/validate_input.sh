@@ -1,4 +1,3 @@
-
 # Input validation
 for input_file in ./{secret,sample}/*.in
 do
@@ -15,18 +14,4 @@ do
     fi
 
 done
-
-#output file creation
-
-
-#for input_file in *.in
-#do
-
-#    output_file="${input_file%.in}.ans"
-
-    # insert correct script here!
-#    echo "Processing $input_file -> Generating $output_file"
-#    python temp.py < "$input_file" > "$output_file"
-
-#done
 

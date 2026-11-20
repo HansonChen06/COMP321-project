@@ -4,6 +4,7 @@
 // but the overestimate at clearing 2 makes A* return distance 4.
 // The correction lines are computed correctly, so the failure is
 // isolated to the false assumption that A* always returns optimal d[1].
+
 #include <functional>
 #include <iostream>
 #include <queue>
