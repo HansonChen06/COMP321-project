@@ -3,7 +3,12 @@
 // The clamp below prevents undefined signed-overflow behavior, but still
 // demonstrates incorrect reasoning about the range of distances.
 
-#include <bits/stdc++.h>
+#include <climits>
+#include <functional>
+#include <iostream>
+#include <queue>
+#include <utility>
+#include <vector>
 using namespace std;
 
 int main() {
