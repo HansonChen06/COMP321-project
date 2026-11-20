@@ -1,0 +1,14 @@
+license: educational
+uuid: 89d1971c-3c8e-4daa-818b-2884ab602c48
+
+type: pass-fail
+name: The Unreliable Guide
+author: COMP 321 project team
+source: COMP-321 Problem Design
+
+validation: default
+
+limits:
+  memory: 2048
+
+time-sec: 1
