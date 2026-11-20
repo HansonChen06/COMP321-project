@@ -6,13 +6,13 @@ Self-loops and parallel edges are allowed.
 sample01: Smallest n=2, one path; terminal guess wrong.
 sample02: Competing routes, one incorrect terminal guess.
 sample03: Six-node example used in the problem figure.
-secret01: n=2, minimum edge weight and minimum guide guess g_i=0.
-secret02: n=2, maximum edge weight.
-secret03: n=3, maximum valid real distance at vertex 1.
-secret04: Parallel edges where the shorter one wins.
-secret05: Cycles, self-loops, and repeated edges.
-secret06: n=99 rounding boundary, star with high weights.
-secret07: n=100 rounding boundary, weighted chain.
+secret01: n=2, minimum edge weight; wrong guess at vertex 1 and correct g_n=0.
+secret02: n=2, maximum edge weight; wrong guess at vertex 1.
+secret03: n=3, maximum valid real distance at vertex 1; wrong guess at vertex 2.
+secret04: Parallel edges where the shorter one wins; wrong guess at vertex 3.
+secret05: Cycles, self-loops, and repeated edges; wrong guess at vertex 4.
+secret06: n=99 rounding boundary, star with high weights; wrong guess at vertex 50.
+secret07: n=100 rounding boundary, weighted chain; wrong guess at vertex 75.
 secret08: n=101; overestimating heuristic breaks naive A*.
 secret09: n=199, high-weight star, two wrong guesses.
 secret10: n=200, dense random graph with duplicate edges.

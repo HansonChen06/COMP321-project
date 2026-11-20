@@ -82,11 +82,13 @@ Edges add_edges(int n, Edges edges, int target, uint32_t seed,
 }
 
 // Generate exactly q=ceil(n/100) incorrect guide guesses, all in [0,10^7].
-// Any true distance >10^7 is necessarily a wrong guess; node n is always wrong.
+// Any true distance >10^7 is necessarily a wrong guess. By default node n is
+// wrong; a non-empty forced list overrides that default so targeted cases can
+// vary the mistake locations.
 vector<ll> guesses(int n, const Dist& d, uint32_t seed, vector<int> forced = {}) {
     const int q = (n + 99) / 100;
     vector<char> bad(n + 1, false);
-    bad[n] = true;
+    if (forced.empty()) bad[n] = true;
     for (int i : forced) { ensure(1 <= i && i <= n, "bad forced vertex"); bad[i] = true; }
     for (int i = 1; i < n; ++i) if (d[i] > MAX_G) bad[i] = true;
     int count = 0;
@@ -167,13 +169,13 @@ Self-loops and parallel edges are allowed.
 sample01: Smallest n=2, one path; terminal guess wrong.
 sample02: Competing routes, one incorrect terminal guess.
 sample03: Six-node example used in the problem figure.
-secret01: n=2, minimum edge weight and minimum guide guess g_i=0.
-secret02: n=2, maximum edge weight.
-secret03: n=3, maximum valid real distance at vertex 1.
-secret04: Parallel edges where the shorter one wins.
-secret05: Cycles, self-loops, and repeated edges.
-secret06: n=99 rounding boundary, star with high weights.
-secret07: n=100 rounding boundary, weighted chain.
+secret01: n=2, minimum edge weight; wrong guess at vertex 1 and correct g_n=0.
+secret02: n=2, maximum edge weight; wrong guess at vertex 1.
+secret03: n=3, maximum valid real distance at vertex 1; wrong guess at vertex 2.
+secret04: Parallel edges where the shorter one wins; wrong guess at vertex 3.
+secret05: Cycles, self-loops, and repeated edges; wrong guess at vertex 4.
+secret06: n=99 rounding boundary, star with high weights; wrong guess at vertex 50.
+secret07: n=100 rounding boundary, weighted chain; wrong guess at vertex 75.
 secret08: n=101; overestimating heuristic breaks naive A*.
 secret09: n=199, high-weight star, two wrong guesses.
 secret10: n=200, dense random graph with duplicate edges.
@@ -201,13 +203,13 @@ void generate(fs::path root) {
     write_case(sample,"sample03",6,{{1,2,1},{2,6,1},{1,3,2},{3,6,2},
                {2,4,3},{4,5,1},{5,6,3}},7,{},2,{0,2,1,2,4,3,7});
     write_case(secret,"secret01",2,{{1,2,1}},11,{},1,{0,0,0});
-    write_case(secret,"secret02",2,{{1,2,MAX_G}},12);
-    write_case(secret,"secret03",3,{{1,2,4000000},{2,3,6000000}},13);
-    write_case(secret,"secret04",4,{{1,2,10},{1,2,1},{2,4,2},{1,3,2},{3,4,2}},14);
+    write_case(secret,"secret02",2,{{1,2,MAX_G}},12,{1});
+    write_case(secret,"secret03",3,{{1,2,4000000},{2,3,6000000}},13,{2});
+    write_case(secret,"secret04",4,{{1,2,10},{1,2,1},{2,4,2},{1,3,2},{3,4,2}},14,{3});
     write_case(secret,"secret05",6,{{1,2,5},{2,6,2},{3,6,3},{1,3,1},
-               {4,5,2},{5,6,2},{4,4,1},{2,2,100},{1,3,10}},15);
-    write_case(secret,"secret06",99,tree(99,Shape::Star,16,MAX_G),16);
-    write_case(secret,"secret07",100,tree(100,Shape::Chain,17,8),17);
+               {4,5,2},{5,6,2},{4,4,1},{2,2,100},{1,3,10}},15,{4});
+    write_case(secret,"secret06",99,tree(99,Shape::Star,16,MAX_G),16,{50});
+    write_case(secret,"secret07",100,tree(100,Shape::Chain,17,8),17,{75});
     auto trap = astar_trap();
     auto trap_g = dijkstra(101,trap);
     trap_g[2] = MAX_G; trap_g[101] = 1;
